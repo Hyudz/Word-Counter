@@ -1,8 +1,8 @@
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -21,18 +21,19 @@ public class App {
         thiss.add(tittle);
 
         JEditorPane field = new JEditorPane();
+        field.setText("The quick brown fox jumps over the lazy dog.");
         field.setBounds(10, 50, 465, 375);
         thiss.add(field);
 
-        JLabel text = new JLabel("Convert now!");
+        JLabel text = new JLabel("There are 9 word(s) in the text");
         text.setSize(500, 25);
-        text.setLocation(190, 430);
+        text.setLocation(140, 430);
         thiss.add(text);
 
         JButton button = new JButton("Count Words");
         button.setSize(125, 25);
         button.setFocusable(false);
-        button.setLocation(25, 430);
+        button.setLocation(10, 430);
         button.addActionListener(new ActionListener() {
 
             @Override
@@ -40,15 +41,33 @@ public class App {
                 String fieldText = field.getText();
                 String[] indexes = fieldText.split(" ");
                 if (field.getText().equalsIgnoreCase("")) {
-                    text.setText("There are " + 0 + " word(s)");
+                    text.setText("There are no word(s) entered");
                 } else {
-                    text.setText("There are " + indexes.length + " word(s)");
+                    text.setText("There are " + indexes.length + " word(s) in the text");
                 }
 
             }
 
         });
         thiss.add(button);
+
+        JButton clearButton = new JButton("Clear Field");
+        clearButton.setSize(125, 25);
+        clearButton.setFocusable(false);
+        clearButton.setLocation(350, 430);
+        clearButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                field.setText("");
+                text.setText("There are no word(s) entered");
+            }
+
+        });
+        thiss.add(clearButton);
+
+        ImageIcon icon = new ImageIcon("src\\logo.png");
+        thiss.setIconImage(icon.getImage());
 
         thiss.setLayout(null);
         thiss.setSize(500, 500);
